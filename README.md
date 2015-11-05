@@ -3,9 +3,12 @@ Watch movies with this simple Python client(only for OSX, can be easily modified
 
 To get started, simply download the repo, navigate to the folder via terminal and run these commands:
 
-python get-pip.py \n
+python get-pip.py 
+
 pip install selenium
+
 pip install rottentomatoes
+
 
 and you should be all set
 
@@ -16,6 +19,7 @@ Now, the fun part,
 run this command in your terminal
 
 python freeFlix.py skyfall
+
 
 and you should get a VLC window playing skyfall.
 
