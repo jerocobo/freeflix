@@ -3,7 +3,7 @@ Watch movies with this simple Python client(only for OSX, can be easily modified
 
 To get started, simply download the repo, navigate to the folder via terminal and run these commands:
 
-python get-pip.py
+python get-pip.py \n
 pip install selenium
 pip install rottentomatoes
 
