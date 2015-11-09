@@ -23,4 +23,5 @@ python freeFlix.py skyfall
 
 and you should get a VLC window playing skyfall.
 
-For other movies, simple replace skyfall with that movie name separated by dashes eg the-dark-knight-rises.
+For other movies, simple replace skyfall with that movie name eg 
+python freeflix.py the dark knight
