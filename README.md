@@ -25,3 +25,8 @@ and you should get a VLC window playing skyfall.
 
 For other movies, simple replace skyfall with that movie name eg 
 python freeflix.py the dark knight
+
+
+<b> Also you can add subtitles easily to the streaming movie </b>
+
+go to subscene.com and find the subtitle of that movie, download it, extract it and drag it to the player
