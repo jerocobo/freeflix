@@ -3,11 +3,11 @@ Watch movies with this simple Python client(only for OSX, can be easily modified
 
 To get started, simply download the repo, navigate to the folder via terminal and run these commands:
 
-python get-pip.py 
+<i>python get-pip.py </i>
 
-pip install selenium
+<i>pip install selenium </i>
 
-pip install rottentomatoes
+<i>pip install rottentomatoes </i>
 
 
 and you should be all set
@@ -18,13 +18,13 @@ Now, the fun part,
 
 run this command in your terminal
 
-python freeFlix.py skyfall
+<i>python freeFlix.py skyfall </i>
 
 
 and you should get a VLC window playing skyfall.
 
 For other movies, simple replace skyfall with that movie name eg 
-python freeflix.py the dark knight
+<i>python freeflix.py the dark knight </i>
 
 
 <b> Also you can add subtitles easily to the streaming movie </b>
