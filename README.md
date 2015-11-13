@@ -1,18 +1,25 @@
 # freeFlix
-Watch movies with this simple Python client(only for OSX, can be easily modified to work on WIndows too). 
+Watch movies with this simple Python client(only for OSX, can be easily modified to work on WIndows too). <br>
 
-To get started, simply download the repo, navigate to the folder via terminal and run these commands:
+Before you get started, make sure you have VLC player installed. If you do not have VLC installed, go to <a href = "https://www.videolan.org/vlc/download-macosx.html"> this link </a>
 
-<i>python get-pip.py </i>
+To get started, simply download the repo(click on "download zip "), navigate to the folder via terminal and run these commands:<br>
+Assuming it is downloaded in the Downloads directory, type these commands.
 
-<i>pip install selenium </i>
+<i>cd ~/Downloads/freeFlix-master </i>
 
-<i>pip install rottentomatoes </i>
+<i>sudo python get-pip.py </i>
+
+Type your password. it will install a python pip program which lets you install other Python modules/libraries. Then,
+
+<i>sudo pip install selenium </i>
+
+<i>sudo pip install rottentomatoes </i>
 
 
 and you should be all set
 
-(Note that, you need to have to have VLC installed on your machine to stream this)
+
 
 Now, the fun part,
 
