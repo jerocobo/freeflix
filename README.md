@@ -9,10 +9,10 @@ To get started, go to <a href = "https://drive.google.com/file/d/0B6QHJLUExD-oM0
 
 <b>open terminal  </b><br>
 
-<b>Run this command <i> cd Applications/freeFlix.app/Contents/freeFlix </i><br>
-<b> Then run <i> sudo python get-pip.py </i></b>
-<b> Type your password </b>
-<b> Run <i> sudo pip install selenium </i></b>
+<b>Run these commands </b> <br>
+<i> cd Applications/freeFlix.app/Contents/freeFlix </i><br>
+<i> sudo python get-pip.py </i><br>
+ <i> sudo pip install selenium </i><br>
 
 and you should be all set
 
