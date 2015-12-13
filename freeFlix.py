@@ -5,6 +5,7 @@
 """  
 
 from selenium import webdriver
+from Tkinter import *
 import re
 import subprocess
 from selenium.webdriver.common.by import By
@@ -15,41 +16,51 @@ import time
 # import tkMessageBox
 import Tkinter as tkinter
 import tkMessageBox as mbox
+
 def finder(movie_name):
-
-  movie_name = ("".join((elem+ "-") for elem in movie_name))[:-1]
-  print movie_name                     
-  movie_name = movie_name.lower()
+  #start the headless browser
   driver = webdriver.PhantomJS(os.getcwd()+'/phantomjs/bin/phantomjs')
-  driver.get("http://putlocker.is/search/search.php?q="+movie_name)
-  search_links = driver.find_elements_by_tag_name("a")
-  
-  
-  for link in search_links:
-    if "watch-"+movie_name in link.get_attribute('href'):
-      
-      movie_identifier = re.search('watch-(.+?)-online', link.get_attribute('href')).group(1)
-      print "found: "+ movie_identifier
+  if movie_name[0] != "tv":
 
-      "if yu want to play 300, it will play 300-rise-of-an-empire, so compare the movie name length and see if it plays the required movie"
-      movie_name_split = movie_identifier.split("-")
-       
-      if len(movie_name_split) - len(movie_name.split("-"))  ==1:
-        try:
-          movie_name_split[-1] = int(movie_name_split[-1])
+    movie_name = ("".join((elem+ "-") for elem in movie_name))[:-1] 
+    movie_name = movie_name.lower()
+    driver.get("http://putlocker.is/search/search.php?q="+movie_name)
+    search_links = driver.find_elements_by_tag_name("a")
+    
+    
+    for link in search_links:
+      if "watch-"+movie_name in link.get_attribute('href'):
+        
+        movie_identifier = re.search('watch-(.+?)-online', link.get_attribute('href')).group(1)
+        print "found: "+ movie_identifier
+
+        "if yu want to play 300, it will play 300-rise-of-an-empire, so compare the movie name length and see if it plays the required movie"
+        movie_name_split = movie_identifier.split("-")
+         
+        if len(movie_name_split) - len(movie_name.split("-"))  ==1:
+          try:
+            movie_name_split[-1] = int(movie_name_split[-1])
+            movie = link.get_attribute('href')
+            print "got the movie link"
+            break
+          except:
+            pass 
+            
+        elif len(movie_name.split("-")) == len(movie_name_split):
           movie = link.get_attribute('href')
           print "got the movie link"
           break
-        except:
+        else:
           pass 
-          
-      elif len(movie_name.split("-")) == len(movie_name_split):
-        movie = link.get_attribute('href')
-        print "got the movie link"
-        break
-      else:
-        pass 
+
+  else:
+    tv_name = ("".join((elem+ "-") for elem in movie_name))[2:-4]  #+ "tvshow-season-" + movie_name[-2] + "-episode-"+movie_name[-1]
+    print "Playing "+ tv_name + "season: " + movie_name[-2] + " Episode: " + movie_name[-1]
+    movie = "http://putlocker.is/watch"+ tv_name + "tvshow-season-" + movie_name[-2] + "-episode-"+movie_name[-1] + "-online-free-putlocker.html"    
+
   source = ''
+
+
   try: #this try should be 
     driver.get(movie) 
   
@@ -62,20 +73,24 @@ def finder(movie_name):
         break
     
     driver.get(req_link)
-    element = driver.find_element_by_class_name("jwdownloaddisplay")
-    link_1 = element.get_attribute("href")
+    if movie_name[0] != "tv":
+      element = driver.find_element_by_class_name("jwdownloaddisplay")
+      link_1 = element.get_attribute("href")
+    else:
+      source = driver.page_source
+      if "<html" in source:
+        try:
+          result = re.search("{file:(.*)}]", source).group(1).split(",")[-2].split(":")[-1].strip('"')
+          link_1 = "http:"+result
+        except:
+          element = driver.find_element_by_class_name("jwdownloaddisplay")
+          link_1 = element.get_attribute("href")
+      else:
+        print "Page displayed differently this time, try again"      
 
-    print "All set...playing " + "".join((elem+ " ") for elem in movie_identifier.split("-") )+ "though VLC"
-   
-    # name_as
-    movie_data= RT('99q4spp2b4t89wghwjy55jz7').feeling_lucky("".join((elem+ " ") for elem in movie_identifier.split("-") ))
-    # print movie_data
-    print "Ratings:\nCritics Rating : "+  str(movie_data['ratings']['critics_score']) + "*"*movie_data['ratings']['critics_score'] + "\nAudience Rating: "+   str(movie_data['ratings']['audience_score']) + "*"*movie_data['ratings']['audience_score']
-    print  "Synopsis:"+ str(movie_data['synopsis']) 
-
+    print "All set...Get some popcorns or pineapples...playing though VLC"
    
     subprocess.Popen(["/Applications/VLC.app/Contents/MacOS/VLC", link_1])
-    # print links[-3]
  
   except:
     if "File was deleted" in source:
@@ -89,9 +104,3 @@ def finder(movie_name):
       window.wm_withdraw()
       mbox.showinfo('my app','movie not found')
     driver.quit()     
-
-finder(sys.argv[1:])
-# finder("skyfall")
-
-# print "hello"
-
