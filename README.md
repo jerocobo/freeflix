@@ -3,7 +3,7 @@
 
 Before you get started, make sure you have VLC player installed. If you do not have VLC installed, go to <a href = "https://www.videolan.org/vlc/download-macosx.html"> this link </a>
 
-To get started, go to <a href = "https://drive.google.com/file/d/0B6QHJLUExD-oM0dBa2tVNmdUUmM/view?pli=1" > this link and downaload the freeflix app. After downloading the app, unzip it(double click it).Then, follow these steps. <br>
+To get started, go to <a href = "https://drive.google.com/file/d/0B6QHJLUExD-oM0dBa2tVNmdUUmM/view?pli=1" > this link </a> and download the freeflix app. After downloading the app, unzip it(double click it).Then, follow these steps. <br>
 
 <b>move the app to Applications directory </b><br>
 
