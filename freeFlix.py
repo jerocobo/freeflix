@@ -11,30 +11,36 @@ import subprocess
 from selenium.webdriver.common.by import By
 import sys
 import os
-from rottentomatoes import RT
 import time
 # import tkMessageBox
 import Tkinter as tkinter
 import tkMessageBox as mbox
+from sys import platform as _platform
 
 def finder(movie_name):
   #start the headless browser
-  driver = webdriver.PhantomJS(os.getcwd()+'/phantomjs/bin/phantomjs')
+  if _platform == "darwin":
+     phantom_js = os.getcwd()+'/phantomjs/bin/phantomjs'
+     vlc_path = "/Applications/VLC.app/Contents/MacOS/VLC"
+  elif _platform == "win32":
+     phantom_js = os.getcwd()+'/phantomjs/bin/phantomjs.exe'
+     vlc_path = "C:\Program Files (x86)/VideoLAN/VLC/vlc.exe"
+     
+  driver = webdriver.PhantomJS(phantom_js)
+  #driver = webdriver.firefox()
   if movie_name[0] != "tv":
 
     movie_name = ("".join((elem+ "-") for elem in movie_name))[:-1] 
     movie_name = movie_name.lower()
     driver.get("http://putlocker.is/search/search.php?q="+movie_name)
-    search_links = driver.find_elements_by_tag_name("a")
-    
+    search_links = driver.find_elements_by_tag_name("a")    
     
     for link in search_links:
       if "watch-"+movie_name in link.get_attribute('href'):
-        
         movie_identifier = re.search('watch-(.+?)-online', link.get_attribute('href')).group(1)
         print "found: "+ movie_identifier
 
-        "if yu want to play 300, it will play 300-rise-of-an-empire, so compare the movie name length and see if it plays the required movie"
+        #"if yu want to play 300, it will play 300-rise-of-an-empire, so compare the movie name length and see if it plays the required movie"
         movie_name_split = movie_identifier.split("-")
          
         if len(movie_name_split) - len(movie_name.split("-"))  ==1:
@@ -90,7 +96,9 @@ def finder(movie_name):
 
     print "All set...Get some popcorns or pineapples...playing though VLC"
    
-    subprocess.Popen(["/Applications/VLC.app/Contents/MacOS/VLC", link_1])
+    #subprocess.Popen(["/Applications/VLC.app/Contents/MacOS/VLC", link_1])
+    print("here")
+    subprocess.Popen([vlc_path, link_1])    
  
   except:
     if "File was deleted" in source:
@@ -104,3 +112,7 @@ def finder(movie_name):
       window.wm_withdraw()
       mbox.showinfo('my app','movie not found')
     driver.quit()     
+
+
+if __name__ == "__main__":
+  finder(sys.argv[1:])

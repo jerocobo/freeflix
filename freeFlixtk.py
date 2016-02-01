@@ -1,17 +1,29 @@
 from Tkinter import *
 import freeFlix
+import os
+
 
 class MyDialog:
 
     def __init__(self, parent):
         top = self.top = Toplevel(parent)
+        self.canvas = Canvas( self.top, width=300, height=450 )
+        self.bgimage = PhotoImage(file = os.getcwd() + "/doggy3.gif")
+        # self.bgimage.pack()
+        # print os.getcwd() + "1.gif"
+        self.controlFrame = Frame(self.top)
+        self.controlFrame.pack(side=RIGHT, padx=2, pady=2, fill=Y)
+
+        self.canvas.create_image(250,200,image = self.bgimage )
+        self.canvas.pack( expand=YES, fill=BOTH )
         self.choice = "Movie"
-        self.movie = Button(top, text= "Movie",highlightbackground= "red", command = self.choose_movie)
+        self.movie = Button(self.controlFrame, text= "Movie",highlightbackground= "red", command = self.choose_movie)
         self.movie.configure(bg = "red")
         self.movie.pack()
-        self.tv = Button(top, text= "TV", command = self.choose_tv, bg = 'green')
+        self.tv = Button(self.controlFrame, text= "TV", command = self.choose_tv, bg = 'green')
         self.tv.grid(row=0, column=0)
         self.tv.pack()
+
         # self.choice = StringVar(top)
         # self.choice.set("Movie") # default value
 
@@ -20,20 +32,20 @@ class MyDialog:
 
        
 
-        Label(top, text="Name").pack()
+        Label(self.controlFrame, text="Name").pack()
 
-        self.e = Entry(top)
+        self.e = Entry(self.controlFrame)
         self.e.pack(padx=5)
 
-        self.season = Label(top, text="Season")
-        self.episode = Label(top, text="Episode")
+        self.season = Label(self.controlFrame, text="Season")
+        self.episode = Label(self.controlFrame, text="Episode")
         #season.pack()
-        self.e1 = Entry(top)
-        self.e2 = Entry(top)
+        self.e1 = Entry(self.controlFrame)
+        self.e2 = Entry(self.controlFrame)
         #self.e1.pack(padx=5)
 
 
-        self.b = Button(top, text="OK", command=self.ok)
+        self.b = Button(self.controlFrame, text="OK", command=self.ok)
         self.b.pack(pady=5)
     def choose_movie(self):
         self.choice = "movie" 
