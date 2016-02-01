@@ -6,7 +6,7 @@ Also, the program is written in Python. So, python should be installed on your s
 
 <h3> <i> For Mac OSX users </i></h3>
 
-Go to <a href = "https://drive.google.com/file/d/0B6QHJLUExD-oRURDcWIxSk5GbzQ/view?usp=sharing" > this link </a> and download the freeflix app. After downloading the app, unzip it(double click it).Then, follow these steps. <br>
+Go to <a href = "https://drive.google.com/file/d/0B6zIdm-wXoI3ZEdxRlpoX3J1Wnc/view?usp=sharing" > this link </a> and download the freeflix app. After downloading the app, unzip it(double click it).Then, follow these steps. <br>
 
 <b>move the app to Applications directory </b><br>
 
