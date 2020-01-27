@@ -1,4 +1,4 @@
-# freeFlix
+# freeFlix [ Update:no longer maintained, might have stopped working ]
 <h2>Watch TV and movies with this simple Python client</h2>. <br>
 Before you get started, make sure you have VLC player installed. If you do not have VLC installed, go to <a href = "https://www.videolan.org/vlc/download-macosx.html"> this link </a> <br>
 
